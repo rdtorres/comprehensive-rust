@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Comprehensive Rust 🦀\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2023-05-25 16:33+0100\n"
+"PO-Revision-Date: 2023-06-02 18:23-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: src/SUMMARY.md:3
 msgid "Welcome to Comprehensive Rust 🦀"
@@ -7042,7 +7042,6 @@ msgstr ""
 "expressão do bloco, se houver. No exemplo acima, o tipo é `()`."
 
 #: src/control-flow/match-expressions.md:28
-#, fuzzy
 msgid ""
 "* Save the match expression to a variable and print it out.\n"
 "* Remove `.as_deref()` and explain the error.\n"
@@ -7050,14 +7049,11 @@ msgid ""
 "    * `as_deref()` transforms an `Option<T>` to `Option<&T::Target>`. In our case, this turns `Option<String>` into `Option<&str>`.\n"
 "    * We can now use pattern matching to match against the `&str` inside `Option`."
 msgstr ""
-"<details>\n"
-"    \n"
 "* Salve o resultado de uma expressão de correspondência `match` em uma variável e imprima-a.\n"
 "* Remova `.as_deref()` e explique o erro gerado.\n"
-"    * `std::env::Agrs().next()` returns an `Option<&String>`, porém `match` não funciona com o tipo `String`.\n"
-"    * `as_deref()` transforma um tipo `Option<T>` em `Option<T::Target>`. Nesse caso, transforma um `Option<&String>` em `Option<&str>`.\n"
-"    * Agora podemos usar a correspondência de padrões em um `&str` dentro de um `Option`.\n"
-"</details>"
+"    * `std::env::Agrs().next()` retorna um `Option<String>`, porém `match` não funciona com o tipo `String`.\n"
+"    * `as_deref()` transforma um tipo `Option<T>` em `Option<&T::Target>`. Nesse caso, transforma um `Option<String>` em `Option<&str>`.\n"
+"    * Agora podemos usar a correspondência de padrões em um `&str` dentro de um `Option`."
 
 #: src/control-flow/break-continue.md:1
 msgid "# `break` and `continue`"
@@ -7069,15 +7065,16 @@ msgid ""
 "- If you want to immediately start\n"
 "the next iteration use [`continue`](https://doc.rust-lang.org/reference/expressions/loop-expr.html#continue-expressions)."
 msgstr ""
+"- Se você quiser sair de um laços mais cedo, use  [`break`](https://doc.rust-lang.org/reference/expressions/loop-expr.html#break-expressions),\n"
+"- Se quiser iniciar imediatamente\n"
+"a próxima iteração use [`continue`](https://doc.rust-lang.org/reference/expressions/loop-expr.html#continue-expressions)."
 
 #: src/control-flow/break-continue.md:7
-#, fuzzy
 msgid ""
 "Both `continue` and `break` can optionally take a label argument which is used\n"
 "to break out of nested loops:"
 msgstr ""
-"Se você quiser sair de um laços mais cedo, use `break`, se quiser iniciar imediatamente\n"
-"a próxima iteração use `continue`. Ambos `continue` e `break` podem opcionalmente\n"
+"Ambos `continue` e `break` podem opcionalmente\n"
 "receber um rótulo como argumento que é usado para sair de laços aninhados:"
 
 #: src/control-flow/break-continue.md:10
@@ -7158,7 +7155,6 @@ msgid ""
 msgstr ""
 
 #: src/std.md:25
-#, fuzzy
 msgid ""
 "  * In fact, Rust contains several layers of the Standard Library: `core`, `alloc` and `std`. \n"
 "  * `core` includes the most basic types and functions that don't depend on `libc`, allocator or\n"
@@ -7166,8 +7162,6 @@ msgid ""
 "  * `alloc` includes types which require a global heap allocator, such as `Vec`, `Box` and `Arc`.\n"
 "  * Embedded Rust applications often only use `core`, and sometimes `alloc`."
 msgstr ""
-"<details>\n"
-"  \n"
 "  * Na verdade, Rust contém várias camadas da Biblioteca Padrão: `core`, `alloc` e `std`.\n"
 "  * `core` inclui os tipos e funções mais básicos que não dependem de `libc`, alocador ou\n"
 "    até mesmo a presença de um sistema operacional.\n"
@@ -7183,7 +7177,6 @@ msgid "The types represent optional data:"
 msgstr "Os tipos representam dados opcionais:"
 
 #: src/std/option-result.md:5
-#, fuzzy
 msgid ""
 "```rust,editable\n"
 "fn main() {\n"
@@ -7200,7 +7193,12 @@ msgstr ""
 "fn main() {\n"
 "    let numeros = vec![10, 20, 30];\n"
 "    let primeiro: Option<&i8> = numeros.first();\n"
-"    println!(\"Primeiro: {primeiro:?}\");"
+"    println!(\"Primeiro: {primeiro:?}\");\n"
+"\n"
+"    let idx: Result<usize, usize> = numeros.binary_search(&10);\n"
+"    println!(\"idx: {idx:?}\");\n"
+"}\n"
+"```"
 
 #: src/std/option-result.md:18
 msgid ""
@@ -7473,7 +7471,6 @@ msgstr ""
 "de `T` diretamente em um `Box<T>`][2]."
 
 #: src/std/box.md:34
-#, fuzzy
 msgid ""
 "* `Box` is like `std::unique_ptr` in C++, except that it's guaranteed to be not null. \n"
 "* In the above example, you can even leave out the `*` in the `println!` statement thanks to `Deref`. \n"
@@ -7481,12 +7478,12 @@ msgid ""
 "   * have a type whose size that can't be known at compile time, but the Rust compiler wants to know an exact size.\n"
 "   * want to transfer ownership of a large amount of data. To avoid copying large amounts of data on the stack, instead store the data on the heap in a `Box` so only the pointer is moved."
 msgstr ""
-"* `Box` é parecido com `std::unique_ptr` em C++. \n"
+"* `Box` é parecido com `std::unique_ptr` em C++, com exceção que é garantido ele não ser nulo. \n"
 "* No exemplo acima, você pode remover o `*` na instrução `println!` graças ao `Deref`. \n"
 "* Uma `Box` é útil quando você:\n"
 "   * Tem um tipo cujo tamanho não está disponível em tempo de compilação, mas o compilador Rust precisa saber o tamanho exato.\n"
 "   * Precisa transferir a propriedade de um dado grande. Ao invés de copiar grandes volumes de dados na pilha (`stack`),\n"
-"os dados são armazenados usando uma `Box` na _heap_ e apenas o ponteiro é movido.</details>"
+"os dados são armazenados usando uma `Box` na _heap_ e apenas o ponteiro é movido."
 
 #: src/std/box-recursive.md:1
 msgid "# Box with Recursive Data Structures"
